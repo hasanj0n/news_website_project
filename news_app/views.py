@@ -1,13 +1,13 @@
-from typing import Any
+
 from django.db.models.query import QuerySet
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView, TemplateView, UpdateView, DeleteView, CreateView
+from django.http import HttpResponse
+from django.urls import reverse_lazy
+
+
 from .models import News, Category
 from .forms import ContactForm
-from django.http import HttpResponse
-
-
-
 
     
 
@@ -146,7 +146,25 @@ class SportNewsView(ListView):
 
 
 
+class NewsUpdateView(UpdateView):
+    model = News
+    fields = ('title', 'body', 'image', 'status', 'category', )
+    template_name = "crud/update.html"
 
+
+
+
+class NewsDeleteView(DeleteView):
+    model = News
+    template_name = "crud/delete.html"
+    success_url =  reverse_lazy('home_page')
+
+
+class NewsCreateView(CreateView):
+    model = News
+    template_name = "crud/create.html"
+    fields = ('title', 'slug', 'body', 'image', 'status', 'category', )
+    
 
 
 
