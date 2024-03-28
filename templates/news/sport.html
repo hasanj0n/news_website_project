@@ -1,0 +1,13 @@
+{% extends "news/base.html" %}
+
+{% load static %}
+
+{% block title %}Mahalliy xabarlar{% endblock title %}
+
+{% block content %}
+        {% for news in sport_news  %}
+            <div class="media"> <a href="{{ news.get_absolute_url }}" class="media-left"> <img alt="" src="{{ news.image.url }}"> </a>
+            <div class="media-body"> <a href="{{ news.get_absolute_url }}" class="catg_title"> {{ news.title }} </a> </div> <br>
+            </div>
+        {% endfor %}
+{% endblock content %}
