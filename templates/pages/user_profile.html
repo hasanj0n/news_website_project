@@ -1,0 +1,27 @@
+{% extends "news/base.html" %}
+
+{% load static %}
+
+{% block title %}Foydalanuvchi profili{% endblock title %}
+
+
+{% block content %}
+    <h3>Xush kelibsiz,  {{ user.username }}</h3>
+    <h3><a href='{% url "logout" %}' style='color:red'>Profiledan chiqish</a></h3>
+
+    <h2>Sizning ma'lumotlaringiz:</h2>
+    {% if profile_info.photo %}
+    <img src="{{ profile_info.photo.url }}" width='30%'>
+    {% endif %}
+    <h4>Tug'ilgan yilingiz: {{ profile_info.date_of_birth }}</h4>
+    <label>Username:</label><input value={{ user.username }} readonly placeholder='kiritilmagan'><br>
+    <label>Emailingiz:</label><input value={{ user.email }} readonly placeholder='kiritilmagan'><br>
+    <label>Ismingiz:</label><input value={{ user.first_name }} readonly placeholder='kiritilmagan'><br>
+    <label>Familiyangiz:</label><input value={{ user.last_name }} readonly placeholder='kiritilmagan'><br>
+
+
+    <h4><a href='{% url "password_change" %}' style='color:red'>Parolni almashtirish</a></h4>
+    <h4><a href='{% url "edit_user" %}' style='color:red'>Profileni o'zgartirish</a></h4>
+
+
+{% endblock content %}

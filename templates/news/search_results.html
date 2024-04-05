@@ -1,0 +1,20 @@
+{% extends "news/base.html" %}
+
+{% load static %}
+
+{% block title %}Qidiruv natajilari{% endblock title %}
+
+
+{% block content %}
+    <h2>Qidiruv natijalari</h2>
+        <ul class="business_catgnav wow fadeInDown">
+            {% for news in all_news %}
+            <li>
+                <figure class="bsbig_fig"> <a href="{{ news.get_absolute_url }}" class="featured_img"> <img alt="" src="{{ news.image.url }}"> <span class="overlay"></span> </a>
+                <figcaption> <a href="{{ news.get_absolute_url }}">{{ news.title }}</a> </figcaption>
+                <p>{{ foreign.body | truncatewords:10 }}</p>
+                </figure>
+            </li>
+            {% endfor %}
+        </ul>
+{% endblock content %}
